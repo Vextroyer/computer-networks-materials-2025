@@ -1,0 +1,449 @@
+\documentclass[12pt]{amsart}
+
+\addtolength{\hoffset}{-2.25cm}
+\addtolength{\textwidth}{4.5cm}
+\addtolength{\voffset}{-2.5cm}
+\addtolength{\textheight}{5cm}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{15pt}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[colorlinks = true, linkcolor = black, citecolor = black, final]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ marvosym }
+\usepackage{wasysym}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\setlength{\parindent}{0in}
+
+\pagestyle{empty}
+\begin{document}
+	\hrule
+	\smallskip
+	\begin{center}
+		{\scshape {\large Redes de Computadoras} \\
+			Curso 2025-2026} \\ \smallskip
+		\textbf{Clase Práctica \# 6} \\
+		{\small \textbf{Tema:} Enrutamiento(Routing).}
+	\end{center}
+	\vspace{-8px}
+	\rule{\linewidth}{2pt}
+	
+	{\scshape Facultad de Matemática y Computación}  \hfill {\scshape Universidad de La Habana}
+	
+	\bigskip\bigskip
+	
+	
+	
+	\vspace{1cm}
+	
+	\begin{center}
+		\textit{La única forma de hacer un gran trabajo es amar lo que haces.}
+	\end{center}
+	
+	\begin{flushright}
+		- Steve Jobs
+	\end{flushright}
+	
+	\vspace{1cm}
+	
+	% Ejercicios
+	\begin{enumerate}
+		
+		\thispagestyle{empty}
+		
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Enrutamiento}}
+		
+		\medskip
+		\noindent El enrutamiento es el proceso de selección de rutas en cualquier red. Una red de computación está formada por muchas máquinas, llamadas nodos, y rutas o enlaces que conectan dichos nodos. La comunicación entre dos nodos en una red interconectada se puede producir a través de muchas rutas diferentes. El enrutamiento es el proceso de seleccionar la mejor ruta mediante algunas reglas predeterminadas.
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{¿Qué es un enrutador?(Router)}}
+		
+		\medskip
+		\noindent Un enrutador es un dispositivo de red que conecta los dispositivos de computación y las redes a otras redes. Los enrutadores cumplen principalmente tres funciones principales.
+
+			\begin{enumerate}
+						\bigskip\bigskip
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{Determinación de la ruta}}
+						
+						\medskip
+						\noindent Un enrutador determina la ruta que toman los datos cuando se mueven de un origen a un destino. Intenta encontrar la mejor ruta al analizar las métricas de la red, como el retraso, la capacidad y la velocidad.						
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{Reenvío de datos}}
+						
+						\medskip
+						\noindent Un enrutador reenvía los datos al siguiente dispositivo en la ruta seleccionada para llegar finalmente a su destino. El dispositivo y el enrutador pueden estar en la misma red o en redes diferentes.
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{Balanceador de carga}}
+						
+						\medskip
+						\noindent A veces, el enrutador puede enviar copias del mismo paquete de datos a través de varias rutas diferentes. Lo hace para reducir los errores debidos a las pérdidas de datos, crear redundancia y gestionar el volumen de tráfico. 		
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+			\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Tipos de enrutamiento}}
+		
+		\medskip
+		\noindent Existen dos tipos diferentes de enrutamiento, que se basan en la forma en que el enrutador crea sus tablas de enrutamiento:
+
+			\begin{enumerate}
+						\bigskip\bigskip
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{Enrutamiento estático}}
+						
+						\medskip
+						\noindent En el enrutamiento estático, un administrador de red utiliza tablas estáticas para configurar y seleccionar manualmente las rutas de red. El enrutamiento estático es útil en situaciones en las que se espera que el diseño o los parámetros de la red permanezcan constantes.
+
+La naturaleza estática de esta técnica de enrutamiento conlleva los inconvenientes esperados, como la congestión de la red. Si bien los administradores pueden configurar rutas de respaldo en caso de que se produzca un error en un enlace, el enrutamiento estático generalmente disminuye la adaptabilidad y la flexibilidad de las redes, lo que resulta en un rendimiento limitado de la red.		
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{Enrutamiento dinámico}}
+						
+						\medskip
+						\noindent En el enrutamiento dinámico, los enrutadores crean y actualizan las tablas de enrutamiento en tiempo de ejecución según las condiciones reales de la red. Intentan encontrar la ruta más rápida desde el origen hasta el destino mediante un protocolo de enrutamiento dinámico, que es un conjunto de reglas que crean, mantienen y actualizan la tabla de enrutamiento dinámico.
+
+La mayor ventaja del enrutamiento dinámico es que se adapta a las condiciones cambiantes de la red, incluidos el volumen de tráfico, el ancho de banda y las fallas de la red.
+
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+			\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Protocolos de enrutamiento}}
+		
+		\medskip
+		\noindent Un protocolo de enrutamiento es un conjunto de reglas que especifican cómo los enrutadores identifican y reenvían paquetes a lo largo de una ruta de red. Los protocolos de enrutamiento se agrupan en dos categorías distintas: protocolos de puerta de enlace interior y protocolos de puerta de enlace exterior.
+
+Los protocolos de puerta de enlace interior funcionan mejor dentro de un sistema autónomo, una red controlada administrativamente por una sola organización. Los protocolos de puerta de enlace externa gestionan mejor la transferencia de información entre dos sistemas autónomos.
+
+			\begin{enumerate}
+						\bigskip\bigskip
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{RIP (Routing Information Protocol)}}
+						
+						\medskip
+						\noindent El protocolo RIP (Routing Information Protocol) utiliza el algoritmo Bellman-Ford para determinar las rutas óptimas en la red, basándose en vectores de distancia donde cada router mantiene una tabla con el costo (número de saltos) hacia cada destino. Periódicamente, cada router envía \textbf{tablas de rutas completas} a todos sus vecinos mediante \textbf{broadcast}, compartiendo su información de enrutamiento con toda la red. Una característica fundamental de RIP es la \textbf{confianza en la información recibida}, donde los routers aceptan y procesan las actualizaciones de sus vecinos sin verificación adicional, asumiendo que la información proporcionada es correcta y actualizada. Sin embargo, esta confianza absoluta lo hace vulnerable a problemas como bucles de enrutamiento y convergencia lenta, lo que limita su escalabilidad en redes grandes.	
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{OSPF (Open Shortest Path First)}}
+						
+						\medskip
+						\noindent El protocolo OSPF (Open Shortest Path First) utiliza el algoritmo Dijkstra para calcular las rutas óptimas en la red, basándose en el estado del enlace donde cada router mantiene una base de datos topológica completa. A diferencia de los protocolos de vector-distancia, OSPF considera múltiples métricas como velocidad, latencia y congestión de los enlaces para determinar el camino más eficiente, no simplemente el número de saltos. Los routers en OSPF envían actualizaciones modulares solo cuando ocurren cambios en la topología, propagando información específica sobre enlaces alterados en lugar de tablas completas, lo que reduce significativamente el overhead de red. Además, OSPF incluye un sistema de seguridad robusto con autenticación de mensajes mediante contraseñas MD5 o SHA, garantizando que las actualizaciones de enrutamiento provengan de routers legítimos y previniendo ataques de suplantación o inyección de rutas maliciosas.
+
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{BGP (Border Gateway Protocol)}}
+						
+						\medskip
+						\noindent El protocolo BGP (Border Gateway Protocol) opera como un protocolo de vector de caminos (path vector) que toma decisiones de enrutamiento basadas en información de ruta completa, incluyendo la secuencia de sistemas autónomos que debe atravesar un paquete para llegar a su destino. Una característica distintiva de BGP son sus políticas de enrutamiento altamente granular, que permiten a los administradores controlar el tráfico según criterios comerciales, de seguridad o técnicos, aceptando, filtrando o modificando rutas específicas. Diseñado para ser altamente escalable, BGP puede manejar las tablas de enrutamiento global de Internet, que contienen cientos de miles de prefijos. En cuanto a seguridad, implementa mecanismos como el filtrado de rutas, listas de control de acceso y protocolos como RPKI (Resource Public Key Infrastructure) para validar la legitimidad de los anuncios de rutas. Sin embargo, BGP sufre de convergencia lenta debido a su diseño deliberadamente pausado que prioriza la estabilidad sobre la velocidad, utilizando temporizadores extensos y procesamiento secuencial de actualizaciones para prevenir oscilaciones en la red global.
+
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+			\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Comandos}}
+		
+		\medskip
+			\begin{itemize}
+						\bigskip\bigskip
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{Windows)}}
+						
+						\medskip
+						\noindent \begin{verbatim}
+							cmd
+							# Ver tabla de enrutamiento
+							route print
+							
+							# Agregar ruta estática
+							route add 192.168.50.0 mask 255.255.255.0 192.168.1.1
+							
+							# Eliminar ruta
+							route delete 192.168.50.0		
+						\end{verbatim}
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item \textbf{\textit{Linux}}
+						
+						\medskip
+						\noindent \begin{verbatim}
+							bash
+							# Ver tabla de enrutamiento
+							route -n
+							# o
+							ip route show
+							
+							# Agregar ruta estática
+							sudo ip route add 192.168.50.0/24 via 192.168.1.1
+							
+							# Eliminar ruta
+							sudo ip route del 192.168.50.0/24
+						\end{verbatim}
+
+						\bigskip\bigskip
+						%------------------------------------------------------------%
+
+			\end{itemize}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Ejercicio práctico:}}
+		
+		\medskip
+			\begin{enumerate}
+						\medskip
+						%------------------------------------------------------------%
+						\item \textit{Agregar 3 rutas estáticas diferentes}
+						\medskip
+						%------------------------------------------------------------%
+						
+						%------------------------------------------------------------%
+						\item \textit{Modificar la métrica de una ruta existente}
+						\medskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item \textit{Eliminar una ruta y verificar los cambios}
+						\medskip
+						%------------------------------------------------------------%
+
+			\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Análisis de Tablas de Enrutamiento}}
+		
+		\medskip\medskip
+			\textbf{Ejemplo de tabla para analizar:}
+			\begin{verbatim}
+
+				Destino        Máscara         Gateway        Interfaz    Métrica
+				0.0.0.0        0.0.0.0         192.168.1.1    eth0       100
+				192.168.1.0    255.255.255.0   0.0.0.0        eth0       100
+				10.0.0.0       255.0.0.0       192.168.1.100  eth0       50
+				172.16.0.0     255.255.0.0     192.168.1.200  eth0       150
+
+			\end{verbatim}
+
+			\begin{enumerate}
+						\medskip
+						%------------------------------------------------------------%
+						\item ¿Por dónde se enviaría un paquete a 8.8.8.8?
+						\medskip
+						%------------------------------------------------------------%
+						
+						%------------------------------------------------------------%
+						\item ¿Y a 192.168.1.50?
+						\medskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item ¿Y a 10.5.5.5?
+						\medskip
+						%------------------------------------------------------------%
+
+						%------------------------------------------------------------%
+						\item ¿Y a 172.16.10.20?
+						\medskip
+						%------------------------------------------------------------%
+
+			\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Simulación de RIP y OSPF}}
+		
+		\medskip\medskip
+			\begin{enumerate}
+					\bigskip\bigskip
+
+					%------------------------------------------------------------%
+					\item \textbf{\textit{Configuración del Entorno}}
+					
+					\medskip
+					\textbf{Herramientas necesarias}
+
+					\begin{itemize}
+						\medskip
+
+						\item Cisco Packet Tracer o GNS3
+
+						\item Máquinas virtuales con Quagga/FRR o routers simulados
+					\end{itemize}					
+
+					\bigskip\bigskip
+					%------------------------------------------------------------%
+
+					%------------------------------------------------------------%
+					\item \textbf{\textit{Simulación de RIP}}
+					
+					\medskip
+
+					\begin{itemize}
+						\medskip
+
+						\item \textbf{Topología básica:}
+
+							\begin{verbatim}
+								[Router A] --- [Router B] --- [Router C]
+									    |              |              |
+									[Red 1]       [Red 2]       [Red 3]
+							\end{verbatim}
+
+						\item \textbf{Configuración RIP en Packet Tracer:}
+							
+							\begin{verbatim}
+								cisco
+								! Router A
+								Router> enable
+								Router# configure terminal
+								Router(config)# router rip
+								Router(config-router)# version 2
+								Router(config-router)# network 192.168.1.0
+								Router(config-router)# network 10.0.0.0
+								Router(config-router)# no auto-summary
+								
+								! Verificar
+								Router# show ip route
+								Router# show ip protocols
+							\end{verbatim}
+
+						\item \textbf{Ejercicios RIP:}
+							\begin{enumerate}
+								\medskip
+								%------------------------------------------------------------%
+								\item Configurar RIP en los 3 routers
+								\medskip
+								%------------------------------------------------------------%
+								
+								%------------------------------------------------------------%
+								\item Verificar el aprendizaje de rutas
+								\medskip
+								%------------------------------------------------------------%
+		
+								%------------------------------------------------------------%
+								\item Desconectar un enlace y observar la convergencia
+								\medskip
+								%------------------------------------------------------------%
+		
+								%------------------------------------------------------------%
+								\item Analizar las tablas de enrutamiento resultantes
+								\medskip
+								%------------------------------------------------------------%
+							\end{enumerate}
+					\end{itemize}
+
+					\item \textbf{\textit{Simulación de OSPF}}
+					
+					\medskip
+
+					\begin{itemize}
+						\medskip
+
+						\item \textbf{Misma topología - configuración OSPF:}
+							
+							\begin{verbatim}
+								cisco
+								! Router A
+								Router> enable
+								Router# configure terminal
+								Router(config)# router ospf 1
+								Router(config-router)# network 192.168.1.0 0.0.0.255 area 0
+								Router(config-router)# network 10.0.0.0 0.255.255.255 area 0
+								
+								! Verificar
+								Router# show ip ospf neighbor
+								Router# show ip ospf database
+								Router# show ip route ospf
+							\end{verbatim}
+
+						\item \textbf{Ejercicios OSPF:}
+							\begin{enumerate}
+								\medskip
+								%------------------------------------------------------------%
+								\item Configurar OSPF en área 0
+								\medskip
+								%------------------------------------------------------------%
+								
+								%------------------------------------------------------------%
+								\item Verificar establecimiento de adyacencias
+								\medskip
+								%------------------------------------------------------------%
+		
+								%------------------------------------------------------------%
+								\item Comparar tablas de enrutamiento con RIP
+								\medskip
+								%------------------------------------------------------------%
+		
+								%------------------------------------------------------------%
+								\item Cambiar costos de enlaces y observar efectos
+								\medskip
+								%------------------------------------------------------------%
+							\end{enumerate}
+					\end{itemize}		
+
+					\bigskip\bigskip
+					%------------------------------------------------------------%
+
+			\end{enumerate}
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+		
+
+		
+	\end{enumerate}
+	
+\end{document}
