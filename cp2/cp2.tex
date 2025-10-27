@@ -1,0 +1,135 @@
+\documentclass[12pt]{amsart}
+
+\addtolength{\hoffset}{-2.25cm}
+\addtolength{\textwidth}{4.5cm}
+\addtolength{\voffset}{-2.5cm}
+\addtolength{\textheight}{5cm}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{15pt}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[colorlinks = true, linkcolor = black, citecolor = black, final]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ marvosym }
+\usepackage{wasysym}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\setlength{\parindent}{0in}
+
+\pagestyle{empty}
+\begin{document}
+	\hrule
+	\smallskip
+	\begin{center}
+		{\scshape {\large Redes de Computadoras} \\
+			Curso 2025-2026} \\ \smallskip
+		\textbf{Clase Práctica \# 2} \\
+		{\small \textbf{Tema:} Simulacion de redes con Docker: Router y Hosts}
+	\end{center}
+	\vspace{-8px}
+	\rule{\linewidth}{2pt}
+	
+	{\scshape Facultad de Matemática y Computación}  \hfill {\scshape Universidad de La Habana}
+	
+	\bigskip\bigskip
+	
+	
+	
+	\vspace{1cm}
+	
+	\begin{center}
+		\textit{La única forma de hacer un gran trabajo es amar lo que haces.}
+	\end{center}
+	
+	\begin{flushright}
+		- Steve Jobs
+	\end{flushright}
+	
+	\vspace{1cm}
+	
+	% Ejercicios
+	\begin{enumerate}
+		
+		\thispagestyle{empty}
+		
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Carpeta 1: dockerfiles}}
+		
+		\medskip
+		\noindent Contiene 3 archivos \textit{Dockerfile}
+			
+		\medskip
+			\begin{itemize}
+				\item \textbf{\textit{host1}} : Define el entorno del primer host
+				\smallskip
+				\item \textbf{\textit{host2}} : Define el entorno del segundo host
+				\smallskip
+				\item \textbf{\textit{router}}: Define el entorno del router (con herramientas de red como `ip', `ping', `iptables', etc.).
+			\end{itemize}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+		
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Carpeta 2: images}}
+		
+		\medskip
+		\noindent Contiene las imágenes Docker ya construidas (`.tar' o listas para cargar).
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+		
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Carpeta 3: scripts}}
+		
+		\medskip
+		\noindent Contiene cuatro scripts esenciales para la práctica: 
+
+		\medskip
+			\begin{itemize}
+				\item \textbf{\textit{build\_images.sh}} : Construye las imágenes desde los Dockerfiles. 
+				\smallskip
+				\item \textbf{\textit{load\_images.sh}} : Carga las imágenes preconstruidas (desde la carpeta 2). 
+				\smallskip
+				\item \textbf{\textit{setup-network.sh}} : Crea la red, inicia los contenedores y configura las interfaces, rutas y reglas de forwarding en el router. 
+				\smallskip
+				\item \textbf{\textit{test-network.sh}} : Prueba la conectividad entre los hosts a través del router. 
+				\smallskip
+			\end{itemize}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+		
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Reto: Unificar Imagen de Hosts }}
+		
+		\medskip
+		\noindent Actualmente, hay dos imágenes diferentes para \textbf{\textit{host1}} y \textbf{\textit{host2}}. Tu objetivo es: 
+			
+		\medskip
+			\begin{enumerate}
+				\item Configurar un \textbf{único Dockerfile} que sirva para ambos hosts.
+				\smallskip
+				\item Modificar los scripts (\textbf{\textit{build\_images.sh}}, \textbf{\textit{setup-network.sh}}) para usar esta imagen.
+				\smallskip
+				\item Asegurarte de que la comunicación entre hosts \textbf{sigue funcionando} después del cambio.
+				\smallskip
+				\item (Opcional) Documentar qué cambios hiciste y por qué.
+			\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		
+	\end{enumerate}
+	
+\end{document}
