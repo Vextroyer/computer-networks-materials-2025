@@ -1,0 +1,235 @@
+\documentclass[12pt]{amsart}
+
+\addtolength{\hoffset}{-2.25cm}
+\addtolength{\textwidth}{4.5cm}
+\addtolength{\voffset}{-2.5cm}
+\addtolength{\textheight}{5cm}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{15pt}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[spanish]{babel}
+\usepackage[colorlinks = true, linkcolor = black, citecolor = black, final]{hyperref}
+
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ marvosym }
+\usepackage{wasysym}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\setlength{\parindent}{0in}
+
+\pagestyle{empty}
+\begin{document}
+	\hrule
+	\smallskip
+	\begin{center}
+		{\scshape {\large Redes de Computadoras} \\
+			Curso 2025-2026} \\ \smallskip
+		\textbf{Clase Práctica \# 4} \\
+		{\small \textbf{Tema:} Capa de Red.}
+	\end{center}
+	\vspace{-8px}
+	\rule{\linewidth}{2pt}
+	
+	{\scshape Facultad de Matemática y Computación}  \hfill {\scshape Universidad de La Habana}
+	
+	\bigskip\bigskip
+	
+	
+	
+	\vspace{1cm}
+	
+	\begin{center}
+		\textit{La única forma de hacer un gran trabajo es amar lo que haces.}
+	\end{center}
+	
+	\begin{flushright}
+		- Steve Jobs
+	\end{flushright}
+	
+	\vspace{1cm}
+	
+	% Ejercicios
+	\begin{enumerate}
+		
+		\thispagestyle{empty}
+		
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Introducción y Contexto }}
+		
+		\medskip
+		\noindent
+		
+		\begin{enumerate}
+			\item \textbf{\textit{IP (Internet Protocol):}} Permite la identificación única de cada dispositivo y define cómo se empaquetan y envían los datos (datagramas).  
+			\medskip \medskip
+			\item \textbf{\textit{Capa de Internet/Red:}} Transporta los datos de origen a destino a través de múltiples redes.
+		\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Direccionamiento (IPv4)}}
+		
+		\medskip
+		\noindent
+	
+		\begin{enumerate}
+			\item \textbf{\textit{IPv4:}} Dirección de \textbf{32 bits}  (ej., `192.168.1.1').  
+
+			\medskip \medskip
+
+			\item \textbf{\textit{Máscara de Subred:}} Una dirección de 32 bits que separa red y host mediante una operación lógica \textbf{AND}. 
+			\medskip \medskip
+			\begin{itemize}
+				\item \textbf{\textit{Notación CIDR:}} Ej., `/24' equivale a `255.255.255.0'.
+			\end{itemize}
+		\end{enumerate}
+		
+		\bigskip
+		\textbf{\textit{Ejercicio Práctico:}} Dada una IP y su máscara, determine la \textbf{dirección de red}.
+		\medskip \medskip
+			\begin{table}[h]
+			    \centering
+			    \begin{tabular}{|l|l|l|l|}
+			        \hline
+			        \textbf{Dirección IP} & \textbf{Máscara CIDR} & \textbf{Máscara Decimal} & \textbf{Dirección de Red} \\
+			        \hline
+			        172.16.10.50 & /16 & 255.255.0.0 & \textbf{172.16.0.0} \\
+			        \hline
+			        192.168.100.12 & /24 & 255.255.255.0 & \textbf{192.168.100.0} \\
+			        \hline
+			    \end{tabular}
+			   \smallskip
+			    \caption{Detalles de Direcciones IP}
+			    \label{tab:detalles_direcciones_ip}
+			\end{table}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Protocolos de Gestión y Resolución}}
+		
+		\medskip
+		\noindent
+		
+		\begin{enumerate}
+			\item \textbf{\textit{DHCP (Dynamic Host Configuration Protocol):}} Configuración automática (IP, Máscara, Gateway, DNS).  
+			\smallskip
+				\begin{itemize}
+					\item Flujo \textbf{DORA:} Discovery → Offer → Request → Acknowledge.
+				\end{itemize}
+
+			\medskip \medskip
+
+			\item \textbf{\textit{ARP (Address Resolution Protocol):}} Traduce IP → MAC. 
+				\begin{itemize}
+					\item Flujo: Host envía \textbf{ARP Request} (broadcast). El host destino responde con su MAC (unicast). 
+				\end{itemize}
+
+			\medskip \medskip
+
+			\item \textbf{\textit{ICMP (Internet Control Message Protocol):}} Diagnóstico y control (ej. errores, `ping').  
+
+		\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Traducción y Evolución}}
+		
+		\medskip
+		\noindent
+		
+		\begin{enumerate}
+			\item \textbf{\textit{NAT (Network Address Translation):}} El router traduce IPs privadas en una pública.  
+			\smallskip
+				\begin{itemize}
+					\item Caso común: \textbf{PAT (Port Address Translation)}, usa puertos para distinguir sesiones.  
+				\end{itemize}
+
+			\medskip \medskip
+
+			\item\textbf{\textit{IPv6:}} Evolución de IP.  
+				\medskip
+				\begin{itemize}
+					\item \textbf{128 bits}, notación hexadecimal (ej. `2001:db8:acad:1::1').  
+					\medskip
+					\item Ventajas: Espacio ilimitado, autoconfiguración (SLAAC), seguridad (IPsec).  
+				\end{itemize}
+			
+			\medskip \medskip			
+
+			\item \textbf{\textit{Tabla Comparativa}}
+			\medskip \medskip
+			
+			\begin{table}[h]
+			    \centering
+			    \begin{tabular}{|l|l|l|}
+			        \hline
+			        \textbf{Característica} & \textbf{IPv4} & \textbf{IPv6} \\
+			        \hline
+			        Tamaño Dirección & 32 bits & 128 bits \\
+			        \hline
+			        Notación & Decimal (.) & Hexadecimal (:) \\
+			        \hline
+			        Escasez & Usa NAT & No requiere NAT \\
+			        \hline
+			    \end{tabular}
+			    \smallskip
+			    \caption{Comparación entre IPv4 e IPv6}
+			    \label{tab:comparacion_ipv4_ipv6}
+			\end{table}
+
+		\end{enumerate}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+		%------------------------------------------------------------%
+		\item \textbf{\textit{Conclusión}}
+		
+		\medskip \medskip
+		\noindent
+		
+		\begin{table}[h]
+		    \centering
+		    \begin{tabular}{|l|l|l|}
+		        \hline
+		        \textbf{Protocolo} & \textbf{Función Principal} & \textbf{Ejemplo de Uso} \\
+		        \hline
+		        IP & Direccionamiento y Enrutamiento. & Presente en cualquier dirección. \\
+		        \hline
+		        Máscara & Separar Red y Host. & Configuración de LAN. \\
+		        \hline
+		        DHCP & Configuración automática. & Conexión a Wi-Fi. \\
+		        \hline
+		        ARP & Mapear IP $\to$ MAC. & Comunicación dentro de LAN. \\
+		        \hline
+		        ICMP & Control y diagnóstico. & Comando \texttt{ping}. \\
+		        \hline
+		        NAT & Traducir IP privadas a una pública. & Routers domésticos. \\
+		        \hline
+		    \end{tabular}
+		   \smallskip
+		    \caption{Descripción de Protocolos de Red}
+		    \label{tab:protocolos_red}
+		\end{table}
+		
+		\bigskip\bigskip
+		%------------------------------------------------------------%
+
+
+	\end{enumerate}
+	
+\end{document}
