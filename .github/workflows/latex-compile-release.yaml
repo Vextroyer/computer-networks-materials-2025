@@ -4,17 +4,15 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on: [workflow_dispatch, push]
 
 jobs:
-  #test:
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #      - name: Hello World
-  #        run: echo "Hello world"
-  
-  explores-repo:
+  main:
      runs-on: ubuntu-latest
      steps:
-        - uses: actions/checkout@v5
-        
-        - name: Show files
-          run: ls
+        - name: Checkout repository
+          uses: actions/checkout@v5
+        - name: Compile LaTeX
+          uses: xu-cheng/latex-action@v3
+          with:
+            root_file: **/*.tex
+        - name: Inspect contents
+          run: ls -R .
         
