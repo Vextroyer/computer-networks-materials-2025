@@ -14,6 +14,10 @@ jobs:
           with:
             root_file: |
               **/*.tex
+        - name: Create folder 
+          run: mkdir pdfs
+        - name: Copy compiled pdfs to folder
+          run: cp *.pdf pdfs
         - name: Inspect contents
           run: ls -R .
         
