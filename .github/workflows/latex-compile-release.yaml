@@ -13,7 +13,7 @@ jobs:
           uses: xu-cheng/latex-action@v3
           with:
             root_file: |
-            **/*.tex
+              **/*.tex
         - name: Inspect contents
           run: ls -R .
         
