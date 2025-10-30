@@ -12,7 +12,8 @@ jobs:
         - name: Compile LaTeX
           uses: xu-cheng/latex-action@v3
           with:
-            root_file: **/*.tex
+            root_file: |
+            **/*.tex
         - name: Inspect contents
           run: ls -R .
         
