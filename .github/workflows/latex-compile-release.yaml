@@ -1,5 +1,5 @@
 name: latex-compile-release
-run-name: ${{ github.actor }} has updated the repo and a new release is beign made.
+run-name: ${{ github.actor }} is making a new release
 
 on: [workflow_dispatch, push]
 
@@ -18,13 +18,16 @@ jobs:
               **/*.tex
         
         - name: Create folder 
-          run: mkdir pdfs
+          run: mkdir release
         
-        - name: Copy compiled pdfs to folder
-          run: cp *.pdf pdfs
+        - name: Copy compiled pdfs to release folder
+          run: cp *.pdf release
+          
+        - name: Copy cp folders content to release
+          run: cp -r cp*/ release
         
         - name: Create ZIP archive of PDFs
-          run: zip -r pdfs.zip pdfs/
+          run: zip -r release.zip release/
         
         - name: Create release
           id: create_release
@@ -32,8 +35,8 @@ jobs:
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
-            tag_name: ${{ github.ref_name }}.${{ github.sha }}
-            release_name: Release ${{ github.ref_name }}.${{ github.sha }}
+            tag_name: ${{ github.ref_name }}.${{ github.run_number }}
+            release_name: Release ${{ github.ref_name }}.${{ github.run_number }}
             
         - name: Upload release assets
           uses: actions/upload-release-asset@v1
@@ -41,6 +44,6 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: ./pdfs.zip
-            asset_name: pdfs.zip
+            asset_path: ./release.zip
+            asset_name: release.zip
             asset_content_type: application/zip
