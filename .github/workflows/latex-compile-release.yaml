@@ -20,4 +20,13 @@ jobs:
           run: cp *.pdf pdfs
         - name: Inspect contents
           run: ls -R .
-        
+        - name: Create release
+          id: create_release
+          uses: actions/create_release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            tag_name: ${{ github.ref }}
+            release_name: Release ${{ github.ref }}
+        - name: Inspecting release output
+           run: cat ${{ steps.create_release.output }}
