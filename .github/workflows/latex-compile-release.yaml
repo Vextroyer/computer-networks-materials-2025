@@ -29,4 +29,4 @@ jobs:
             tag_name: ${{ github.ref }}
             release_name: Release ${{ github.ref }}
         - name: Inspecting release output
-           run: cat ${{ steps.create_release.output }}
+          run: cat ${{ steps.create_release.output }}
