@@ -7,19 +7,25 @@ jobs:
   main:
      runs-on: ubuntu-latest
      steps:
+        
         - name: Checkout repository
           uses: actions/checkout@v5
+          
         - name: Compile LaTeX
           uses: xu-cheng/latex-action@v3
           with:
             root_file: |
               **/*.tex
+        
         - name: Create folder 
           run: mkdir pdfs
+        
         - name: Copy compiled pdfs to folder
           run: cp *.pdf pdfs
-        - name: Inspect contents
-          run: ls -R .
+        
+        - name: Create ZIP archive of PDFs
+          run: zip -r pdfs.zip pdfs/
+        
         - name: Create release
           id: create_release
           uses: actions/create-release@v1
@@ -28,12 +34,13 @@ jobs:
           with:
             tag_name: ${{ github.ref_name }}.${{ github.sha }}
             release_name: Release ${{ github.ref_name }}.${{ github.sha }}
+            
         - name: Upload release assets
           uses: actions/upload-release-asset@v1
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: ./pdfs/
-            asset_name: compiled-pdfs
+            asset_path: ./pdfs.zip
+            asset_name: pdfs.zip
             asset_content_type: application/zip
