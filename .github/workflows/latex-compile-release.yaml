@@ -1,5 +1,5 @@
 name: latex-compile-release
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} has updated the repo and a new release is beign made.
 
 on: [workflow_dispatch, push]
 
@@ -28,5 +28,12 @@ jobs:
           with:
             tag_name: ${{ github.ref_name }}.${{ github.sha }}
             release_name: Release ${{ github.ref_name }}.${{ github.sha }}
-        - name: Inspecting release output
-          run: cat ${{ steps.create_release.output.upload_url }}
+        - name: Upload release assets
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./pdfs/
+            asset_name: compiled-pdfs
+            asset_content_type: application/zip
