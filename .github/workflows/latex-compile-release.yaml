@@ -22,7 +22,7 @@ jobs:
           run: mkdir release
         
         - name: Copy compiled pdfs to release folder
-          run: cp *.pdf release
+          run: cp cp*/*.pdf release
           
         - name: Copy cp folders content to release
           run: cp -r cp*/ release
