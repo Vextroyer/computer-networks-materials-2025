@@ -24,12 +24,14 @@ jobs:
         - name: Copy cps to release folder
           run: |
               for dir in cp*/; do
-                if [ -d "$dir" ]; then
-                  mkdir -p "release/$dir"
-                  cp "$dir".pdf "release/$dir"
-                  cp -r "$dir"/assets "release/$dir"
-                fi
-               done
+                  if [ -d "$dir" ]; then
+                    mkdir -p "release/$dir"
+                    cp "$dir"*.pdf "release/$dir"
+                    if [ -d "$dir"/assets ]; then
+                      cp -r "$dir"/assets "release/$dir"
+                    fi
+                  fi
+              done
         - name: Create ZIP archive of PDFs
           run: zip -r release.zip release/
         
