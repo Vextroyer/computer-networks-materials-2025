@@ -16,6 +16,7 @@ jobs:
           with:
             root_file: |
               **/*.tex
+            work_in_root_file_dir: true
         
         - name: Create folder 
           run: mkdir release
