@@ -21,12 +21,15 @@ jobs:
         - name: Create folder 
           run: mkdir release
         
-        - name: Copy compiled pdfs to release folder
-          run: cp cp*/*.pdf release
-          
-        - name: Copy cp folders content to release
-          run: cp -r cp*/ release
-        
+        - name: Copy cps to release folder
+          run: |
+              for dir in cp*/; do
+                if [ -d "$dir" ]; then
+                  mkdir -p "release/$dir"
+                  cp "$dir".pdf "release/$dir"
+                  cp -r "$dir"/assets "release/$dir"
+                fi
+               done
         - name: Create ZIP archive of PDFs
           run: zip -r release.zip release/
         
